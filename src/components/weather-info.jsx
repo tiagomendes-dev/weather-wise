@@ -24,6 +24,31 @@ export default function WeatherInfo({ weather }) {
         alt=""
       />
       <p>{Math.round(weather.main.temp)} &deg;C</p>
+
+      <div>
+        <p>{weather.weather[0].description}</p>
+        <div>
+          <p>Humidity: {weather.main.humidity}%</p>
+          <p>Wind: {Math.round(weather.wind.speed)} km/h</p>
+          <p>Pressure: {weather.main.pressure} hPa</p>
+          <p>Visibility: {weather.visibility / 1000} km</p>
+          <p>Clouds: {weather.clouds.all}%</p>
+
+          <p>
+            Coordinates: {weather.coord.lat}, {weather.coord.lon}
+          </p>
+
+          <p>Timezone: {weather.timezone}</p>
+
+          <p>Time: {new Date().toLocaleString()}</p>
+
+          <p>Weather ID: {weather.weather[0].id}</p>
+
+          <p>Weather icon: {weather.weather[0].icon}</p>
+
+          <p>Weather main: {weather.weather[0].main}</p>
+        </div>
+      </div>
     </div>
   );
 }
