@@ -1,75 +1,88 @@
 /* eslint-disable react/prop-types */
 import "leaflet/dist/leaflet.css";
 
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import {
+  CloudIcon,
+  DropletIcon,
+  EyeIcon,
+  GaugeIcon,
+  MapPin,
+  SunriseIcon,
+  SunsetIcon,
+  WindIcon,
+} from "lucide-react";
 
 export default function WeatherInfo({ weather }) {
   return (
-    <div className="grid grid-cols-4 gap-4">
-      <div className="col-span-1">
-        <div>
-          <h1 className="text-2xl font-semibold text-white">{weather.name}</h1>
+    <div className="space-y-4">
+      <div className="flex min-h-[238px] flex-col justify-center rounded-xl bg-white px-10 py-4">
+        <div className="flex items-center gap-2">
+          <MapPin className="size-4 text-zinc-600/90" />
+          <p className="text-zinc-600/90">{weather.name}</p>
+        </div>
+        <span>
+          {new Date().toLocaleString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}{" "}
+          <span className="text-sm font-light">- horário da busca</span>
+        </span>
+        <div className="flex items-center gap-6">
           <img
             src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
             alt=""
             className="size-24"
           />
-
-          <div className="flex items-center justify-between">
-            <p className="text-4xl font-bold text-white">
-              {Math.round(weather.main.temp)}&deg;C
-            </p>
-            <p className="w-32 text-right text-xl font-semibold first-letter:capitalize">
+          <p className="flex text-4xl font-bold">
+            {Math.round(weather.main.temp)}
+            <span className="mt-1 text-base text-zinc-600/60">&deg;C</span>
+          </p>
+          <div className="flex flex-col items-center justify-between">
+            <div className="font-semibold leading-none text-zinc-600/60 first-letter:capitalize">
               {weather.weather[0].description}
-            </p>
+              <p className="leading-none text-zinc-600/70">
+                Sensação térmica de {Math.round(weather.main.feels_like)}&deg;C
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="my-4 h-[1px] w-full bg-neutral-50/10" />
-        <div className="grayscale">
-          <MapContainer
-            style={{
-              height: "350px",
-              borderRadius: "0.75rem",
-              backgroundSize: "cover",
-            }}
-            center={[weather.coord.lat, weather.coord.lon]}
-            zoom={6}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[weather.coord.lat, weather.coord.lon]} />
-          </MapContainer>
         </div>
       </div>
 
-      <div className="col-span-3">
-        <div className="flex h-full gap-4">
-          <div className="h-full w-[1px] bg-neutral-50/10" />
-          <div>
-            <div>
-              <p>Humidity: {weather.main.humidity}%</p>
-              <p>Wind: {Math.round(weather.wind.speed)} km/h</p>
-              <p>Pressure: {weather.main.pressure} hPa</p>
-              <p>Visibility: {weather.visibility / 1000} km</p>
-              <p>Clouds: {weather.clouds.all}%</p>
+      <div className="grid grid-cols-3 gap-4">
+        <div className="flex items-center justify-center gap-4 rounded-xl bg-white py-4">
+          <DropletIcon />
+          <p>Umidade: {weather.main.humidity}%</p>
+        </div>
+        <div className="flex items-center justify-center gap-4 rounded-xl bg-white py-4">
+          <WindIcon />
+          <p>Ventos: {Math.round(weather.wind.speed)} km/h</p>
+        </div>
+        <div className="flex items-center justify-center gap-4 rounded-xl bg-white py-4">
+          <GaugeIcon />
+          <p>Pressão: {weather.main.pressure} hPa</p>
+        </div>
+        <div className="flex items-center justify-center gap-4 rounded-xl bg-white py-4">
+          <EyeIcon />
+          <p>Visibilidade: {weather.visibility / 1000} km</p>
+        </div>
+        <div className="col-span-2 flex items-center justify-center gap-4 rounded-xl bg-white py-4">
+          <CloudIcon />
+          <p>Núvens: {weather.clouds.all}%</p>
+        </div>
+      </div>
 
-              <p>
-                Coordinates: {weather.coord.lat}, {weather.coord.lon}
-              </p>
-
-              <p>Timezone: {weather.timezone}</p>
-
-              <p>Time: {new Date().toLocaleString()}</p>
-
-              <p>Weather ID: {weather.weather[0].id}</p>
-
-              <p>Weather icon: {weather.weather[0].icon}</p>
-
-              <p>Weather main: {weather.weather[0].main}</p>
-            </div>
+      <div className="rounded-xl bg-white px-10 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex gap-4">
+            <SunriseIcon />
+            Nascer do sol:{" "}
+            {new Date(weather.sys.sunrise * 1000).toLocaleTimeString()}
+          </div>
+          <div className="h-10 w-[1px] bg-black/20" />
+          <div className="flex gap-4">
+            <SunsetIcon />
+            Pôr do sol:{" "}
+            {new Date(weather.sys.sunset * 1000).toLocaleTimeString()}
           </div>
         </div>
       </div>
