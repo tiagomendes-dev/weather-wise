@@ -1,52 +1,56 @@
 /* eslint-disable react/prop-types */
 
 export default function WeatherInfo({ weather }) {
-  if (!weather) {
-    console.error("Weather prop is missing or null");
-    return null;
-  }
-
-  if (!weather.name) {
-    console.error("Weather name is missing");
-    return null;
-  }
-
-  if (!weather.main || !weather.main.temp) {
-    console.error("Weather temperature is missing");
-    return null;
-  }
-
   return (
-    <div className="">
-      {weather.name}
-      <img
-        src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
-        alt=""
-      />
-      <p>{Math.round(weather.main.temp)} &deg;C</p>
-
-      <div>
-        <p>{weather.weather[0].description}</p>
+    <div className="grid grid-cols-4 gap-4">
+      <div className="col-span-1">
         <div>
-          <p>Humidity: {weather.main.humidity}%</p>
-          <p>Wind: {Math.round(weather.wind.speed)} km/h</p>
-          <p>Pressure: {weather.main.pressure} hPa</p>
-          <p>Visibility: {weather.visibility / 1000} km</p>
-          <p>Clouds: {weather.clouds.all}%</p>
+          <h1 className="text-2xl font-semibold text-white">{weather.name}</h1>
+          <img
+            src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
+            alt=""
+            className="size-24"
+          />
 
-          <p>
-            Coordinates: {weather.coord.lat}, {weather.coord.lon}
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="text-4xl font-bold text-white">
+              {Math.round(weather.main.temp)}&deg;C
+            </p>
+            <p className="w-32 text-right text-xl font-semibold first-letter:capitalize">
+              {weather.weather[0].description}
+            </p>
+          </div>
+        </div>
+        <div className="my-4 h-[1px] w-full bg-neutral-50/10" />
+        <div></div>
+      </div>
 
-          <p>Timezone: {weather.timezone}</p>
+      <div className="col-span-3">
+        <div className="flex">
+          <div className="mx-4 h-full w-[1px] bg-red-500" />
+          <div>
+            <div>
+              <p>Humidity: {weather.main.humidity}%</p>
+              <p>Wind: {Math.round(weather.wind.speed)} km/h</p>
+              <p>Pressure: {weather.main.pressure} hPa</p>
+              <p>Visibility: {weather.visibility / 1000} km</p>
+              <p>Clouds: {weather.clouds.all}%</p>
 
-          <p>Time: {new Date().toLocaleString()}</p>
+              <p>
+                Coordinates: {weather.coord.lat}, {weather.coord.lon}
+              </p>
 
-          <p>Weather ID: {weather.weather[0].id}</p>
+              <p>Timezone: {weather.timezone}</p>
 
-          <p>Weather icon: {weather.weather[0].icon}</p>
+              <p>Time: {new Date().toLocaleString()}</p>
 
-          <p>Weather main: {weather.weather[0].main}</p>
+              <p>Weather ID: {weather.weather[0].id}</p>
+
+              <p>Weather icon: {weather.weather[0].icon}</p>
+
+              <p>Weather main: {weather.weather[0].main}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
