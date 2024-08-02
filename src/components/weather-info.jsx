@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+import "leaflet/dist/leaflet.css";
+
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 export default function WeatherInfo({ weather }) {
   return (
@@ -22,7 +25,24 @@ export default function WeatherInfo({ weather }) {
           </div>
         </div>
         <div className="my-4 h-[1px] w-full bg-neutral-50/10" />
-        <div></div>
+        <div className="grayscale">
+          <MapContainer
+            style={{
+              height: "350px",
+              borderRadius: "0.75rem",
+              backgroundSize: "cover",
+            }}
+            center={[weather.coord.lat, weather.coord.lon]}
+            zoom={6}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[weather.coord.lat, weather.coord.lon]} />
+          </MapContainer>
+        </div>
       </div>
 
       <div className="col-span-3">
