@@ -26,8 +26,8 @@ export default function WeatherInfo({ weather }) {
       </div>
 
       <div className="col-span-3">
-        <div className="flex">
-          <div className="mx-4 h-full w-[1px] bg-red-500" />
+        <div className="flex h-full gap-4">
+          <div className="h-full w-[1px] bg-neutral-50/10" />
           <div>
             <div>
               <p>Humidity: {weather.main.humidity}%</p>
