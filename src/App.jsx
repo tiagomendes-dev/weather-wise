@@ -28,16 +28,18 @@ export default function App() {
     <div className="space-y-4">
       <header className="rounded-xl bg-white px-10 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold text-blue-500">WeatherWise</h1>
+          <h1 className="hidden text-xl font-bold text-blue-500 sm:block">
+            WeatherWise
+          </h1>
 
-          <div className="flex items-center gap-4">
-            <div className="inline-flex rounded-lg border bg-white">
+          <div className="flex w-full items-center gap-4 sm:w-auto">
+            <div className="inline-flex w-full rounded-lg border sm:w-auto">
               <button className="px-4" onClick={searchCity}>
                 <SearchIcon className="size-4 text-zinc-600/70" />
               </button>
               <input
                 ref={inputRef}
-                className="outline-none"
+                className="flex-1 outline-none"
                 type="text"
                 placeholder="Search location"
               />
@@ -45,10 +47,6 @@ export default function App() {
                 <LocateFixedIcon className="size-4" />
               </button>
             </div>
-            <button className="flex items-center gap-2 rounded-lg bg-zinc-900 px-2 py-1 text-white">
-              <MoonIcon className="size-4" />
-              Dark
-            </button>
           </div>
         </div>
       </header>
