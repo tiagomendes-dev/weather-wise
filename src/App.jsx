@@ -55,7 +55,7 @@ export default function App() {
 
       {weather && (
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid gap-4 xl:grid-cols-2">
             {weather && <WeatherInfo weather={weather} />}
 
             {weatherWeekly && (

@@ -24,7 +24,7 @@ export default function WeatherInfoWeekly({ weatherWeekly }) {
       {nextWeekForecast.map((forecast) => (
         <div
           key={forecast.dt}
-          className="border-b border-black/10 pb-4 pt-2 last:border-none"
+          className="flex items-center justify-between border-b border-black/10 pb-4 pt-2 last:border-none"
         >
           <div className="flex gap-2">
             <img
@@ -40,6 +40,9 @@ export default function WeatherInfoWeekly({ weatherWeekly }) {
               </p>
             </div>
           </div>
+          <p className="text-4xl font-bold">
+            {Math.round(forecast.main.temp)}&deg;C
+          </p>
         </div>
       ))}
     </div>
