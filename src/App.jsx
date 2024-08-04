@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LocateFixedIcon, MoonIcon, SearchIcon } from "lucide-react";
+import { LocateFixedIcon, SearchIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
@@ -70,8 +70,7 @@ export default function App() {
                 backgroundSize: "cover",
               }}
               center={[weather.coord.lat, weather.coord.lon]}
-              zoom={6}
-              scrollWheelZoom={false}
+              zoom={3}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
