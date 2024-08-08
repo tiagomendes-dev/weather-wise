@@ -1,6 +1,6 @@
 import axios from "axios";
 import { LocateFixedIcon, SearchIcon } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 import WeatherInfo from "./components/weather-info";
@@ -9,9 +9,11 @@ import WeatherInfoWeekly from "./components/weather-info-weekly";
 export default function App() {
 
   const [location, setLocation] = useState("");
-  const [weather, setWeather] = useState();
-  const [weatherWeekly, setWeatherWeekly] = useState();
+  const [weather, setWeather] = useState(null);
+  const [weatherWeekly, setWeatherWeekly] = useState(null);
+
   const inputRef = useRef();
+  const mapRef = useRef(null);
 
   const key = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
 
@@ -55,6 +57,15 @@ export default function App() {
       searchCity();
     }
   };
+
+
+  useEffect(() => {
+    if (weather && mapRef.current) {
+      const { lat, lon } = weather.coord;
+      const map = mapRef.current;
+      map.setView([lat, lon], 6);
+    }
+  }, [weather]);
 
   return (
     <div className="space-y-4">
@@ -108,7 +119,8 @@ export default function App() {
                 backgroundSize: "cover",
               }}
               center={[weather.coord.lat, weather.coord.lon]}
-              zoom={3}
+              zoom={6}
+              ref={mapRef}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
