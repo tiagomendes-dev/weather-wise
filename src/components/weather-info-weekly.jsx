@@ -32,15 +32,15 @@ export default function WeatherInfoWeekly({ weatherWeekly }) {
               alt=""
             />
             <div>
-              <p className="text-sm text-zinc-500 first-letter:capitalize">
+              <p className="text-xs text-zinc-500 first-letter:capitalize">
                 {convertDate(forecast)}
               </p>
-              <p className="font-semibold capitalize">
+              <p className="text-sm font-semibold capitalize">
                 {forecast.weather[0].description}
               </p>
             </div>
           </div>
-          <p className="text-4xl font-bold">
+          <p className="text-2xl font-bold lg:text-4xl">
             {Math.round(forecast.main.temp)}&deg;C
           </p>
         </div>

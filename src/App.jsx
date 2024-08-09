@@ -1,13 +1,12 @@
 import axios from "axios";
 import { LocateFixedIcon, SearchIcon } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 import WeatherInfo from "./components/weather-info";
 import WeatherInfoWeekly from "./components/weather-info-weekly";
 
 export default function App() {
-
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState(null);
   const [weatherWeekly, setWeatherWeekly] = useState(null);
@@ -58,7 +57,6 @@ export default function App() {
     }
   };
 
-
   useEffect(() => {
     if (weather && mapRef.current) {
       const { lat, lon } = weather.coord;
@@ -69,7 +67,7 @@ export default function App() {
 
   return (
     <div className="space-y-4">
-      <header className="rounded-xl bg-white px-10 py-4">
+      <header className="rounded-xl bg-white p-4">
         <div className="flex items-center justify-between">
           <h1 className="hidden text-xl font-bold text-blue-500 sm:block">
             WeatherWise
@@ -106,7 +104,7 @@ export default function App() {
             {weather && <WeatherInfo weather={weather} />}
 
             {weatherWeekly && (
-              <div className="rounded-xl bg-white px-10 py-4">
+              <div className="rounded-xl bg-white p-4">
                 <WeatherInfoWeekly weatherWeekly={weatherWeekly} />
               </div>
             )}
