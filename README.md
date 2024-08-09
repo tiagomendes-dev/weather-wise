@@ -2,7 +2,7 @@
   <a href="https://weather-wise-rose.vercel.app/">Demonstração</a>
 </div>
 
-<h1 align="center" id="top">BuscaCEP</h1>
+<h1 align="center" id="top">Weather Wise</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/tiagomendes-dev/weather-wise?color=56BEB8">
