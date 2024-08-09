@@ -22,7 +22,6 @@ export default function App() {
         const { latitude, longitude } = position.coords;
 
         try {
-          // Chame uma API para converter coordenadas em um nome de local (usando a OpenWeatherMap ou outra API de geocodificação)
           const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=metric`,
           );
