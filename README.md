@@ -1,5 +1,5 @@
 <div>
-  <a href="https://weather-wise-rose.vercel.app/">Demonstração</a>
+  <a href="https://weather-wise-rose.vercel.app/" target="_blank">Demonstração</a>
 </div>
 
 <h1 align="center" id="top">Weather Wise</h1>
